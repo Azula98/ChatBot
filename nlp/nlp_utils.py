@@ -1,4 +1,5 @@
 import nltk
+from chatterbot import ChatBot
 
 def setup_nltk():
     nltk.download('punkt')
@@ -8,3 +9,5 @@ def process_message(message):
     tokens = nltk.word_tokenize(message)
     # Weitere NLP-Verarbeitungen können hier hinzugefügt werden
     return tokens
+
+bot = ChatBot("Norman")

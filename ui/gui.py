@@ -1,9 +1,13 @@
 import tkinter as tk
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
+from tkinter import ttk
 from tkinter import messagebox
 
 def run_gui():
     root = tk.Tk()
     root.title("Chatbot")
+    root.iconbitmap("./assets/icon.ico")
 
     chat_log = tk.Text(root, state='disabled')
     chat_log.pack()
