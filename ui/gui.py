@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
 from tkinter import ttk
 from tkinter import messagebox
+from nlp.chatbot import get_response
 
 def run_gui():
     root = tk.Tk()
@@ -19,6 +20,8 @@ def run_gui():
         message = entry_box.get()
         chat_log.configure(state='normal')
         chat_log.insert(tk.END, "You: " + message + "\n")
+        respons = get_response(message)
+        chat_log.inset(tk.END, "Ailisa: " + str(respons) + "\n")
         chat_log.configure(state='disabled')
         entry_box.delete(0, tk.END)
 
