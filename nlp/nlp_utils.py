@@ -1,8 +1,10 @@
 import nltk
-from chatterbot import ChatBot
 
 def setup_nltk():
-    nltk.download('punkt')
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
     # Weitere Downloads und Setups können hier hinzugefügt werden
 
 def process_message(message):
@@ -10,4 +12,3 @@ def process_message(message):
     # Weitere NLP-Verarbeitungen können hier hinzugefügt werden
     return tokens
 
-bot = ChatBot("Norman")

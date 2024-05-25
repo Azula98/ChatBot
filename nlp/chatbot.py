@@ -15,7 +15,7 @@ def get_response(message):
 trainer = ChatterBotCorpusTrainer(chatbot)
 
 # Trainiere den ChatBot mit dem englischen Corpus-Daten
-trainer.train('chatterbot.corpus.english')
+trainer.train("chatterbot.corpus.english")
 
 exit_conditions = (":q", "quit", "exit")
 while True:

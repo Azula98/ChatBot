@@ -1,31 +1,29 @@
 import tkinter as tk
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
-from tkinter import ttk
-from tkinter import messagebox
 from nlp.chatbot import get_response
 
+def send_message():
+    message = user_input.get()
+    chat_history.insert(tk.END, "You: " + message + "\n")
+    response = get_response(message)
+    chat_history.insert(tk.END, "Bot: " + str(response) + "\n")
+    user_input.delete(0, tk.END)
+
 def run_gui():
+    global user_input, chat_history
+
     root = tk.Tk()
-    root.title("Chatbot")
-    root.iconbitmap("./assets/icon.ico")
+    root.title("ChatBot GUI")
 
-    chat_log = tk.Text(root, state='disabled')
-    chat_log.pack()
+    chat_frame = tk.Frame(root)
+    scrollbar = tk.Scrollbar(chat_frame)
+    chat_history = tk.Listbox(chat_frame, yscrollcommand=scrollbar.set, width=50, height=20)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    chat_history.pack(side=tk.LEFT, fill=tk.BOTH)
+    chat_history.pack()
+    chat_frame.pack()
 
-    entry_box = tk.Entry(root)
-    entry_box.pack()
-
-    def send_message(event=None):
-        message = entry_box.get()
-        chat_log.configure(state='normal')
-        chat_log.insert(tk.END, "You: " + message + "\n")
-        respons = get_response(message)
-        chat_log.inset(tk.END, "Ailisa: " + str(respons) + "\n")
-        chat_log.configure(state='disabled')
-        entry_box.delete(0, tk.END)
-
-    entry_box.bind("<Return>", send_message)
+    user_input = tk.Entry(root, width=50)
+    user_input.pack()
     send_button = tk.Button(root, text="Send", command=send_message)
     send_button.pack()
 
